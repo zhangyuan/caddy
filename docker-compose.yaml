@@ -1,0 +1,17 @@
+version: '3'
+services:
+  caddy:
+    image: caddy:2.6.2-alpine
+    restart: unless-stopped
+    environment:
+      - XDG_DATA_HOME=/data/
+      - XDG_CONFIG_HOME=/config/
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./config/caddy/config:/config/caddy
+      - ./data/caddy/:/data/caddy
+      
